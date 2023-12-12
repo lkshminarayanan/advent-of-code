@@ -11,7 +11,7 @@ private:
   void downloadInput(const std::string &url);
 
 public:
-  InputReader(int day);
+  InputReader(int day, bool useExample = false);
 
   // File iterators for the input
   auto begin() const { return FileIterator(_inputFilePath); }

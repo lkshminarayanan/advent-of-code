@@ -11,9 +11,7 @@
 
 constexpr int DEFAULT_YEAR = 2023;
 
-InputReader::InputReader(int day) {
-  bool useExample = day < 0;
-  day = std::abs(day);
+InputReader::InputReader(int day, bool useExample) {
 
   _inputFilePath =
       std::format("{}/year{}_d{}", INPUT_LOCAL_CACHE, DEFAULT_YEAR, day);
@@ -24,7 +22,11 @@ InputReader::InputReader(int day) {
 
   // download the input file if it is not present locally
   if (std::filesystem::exists(_inputFilePath)) {
-    std::cout << "Using input file from local cache.." << std::endl;
+    if (useExample) {
+      std::cout << "Using example input file.." << std::endl;
+    } else {
+      std::cout << "Using input file from local cache.." << std::endl;
+    }
   } else {
     if (useExample) {
       // Example file has to be manually copied

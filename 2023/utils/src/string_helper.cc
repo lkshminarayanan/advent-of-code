@@ -1,7 +1,7 @@
 #include "string_helper.hh"
 
-std::vector<std::string> tokenize(const std::string &line,
-                                  const std::string &separators) {
+std::vector<std::string> split(const std::string &line,
+                               const std::string &separators) {
 
   std::vector<std::string> tokens;
 
