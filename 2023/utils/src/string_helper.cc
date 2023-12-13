@@ -23,3 +23,26 @@ std::vector<std::string> split(const std::string &line,
 
   return tokens;
 }
+
+std::vector<int> splitToIntegers(const std::string &line,
+                                 const std::string &separators) {
+  std::vector<int> numbers;
+
+  int pos = 0;
+  while (pos < line.size()) {
+    auto sepPos = line.find_first_of(separators, pos);
+    if (sepPos == std::string::npos) {
+      // end of separators
+      numbers.push_back(std::stoi(line.substr(pos)));
+      break;
+    }
+
+    if (sepPos - pos > 0) {
+      numbers.push_back(std::stoi(line.substr(pos, sepPos - pos)));
+    }
+
+    pos = sepPos + 1;
+  }
+
+  return numbers;
+}
