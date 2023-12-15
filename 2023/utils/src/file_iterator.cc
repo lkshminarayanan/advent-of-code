@@ -6,7 +6,8 @@ FileIterator::FileIterator(const std::string &filepath) {
   _fs.open(filepath, std::ios::in);
   if (!_fs.is_open()) {
     // file is not open
-    throw std::runtime_error("failed to open the input file");
+    throw std::runtime_error("failed to open the input file at '" + filepath +
+                             "'");
   }
 
   readline();

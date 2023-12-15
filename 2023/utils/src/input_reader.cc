@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 
+#include "command_line_args.hh"
 #include "config.hh"
 
 constexpr int DEFAULT_YEAR = 2023;
@@ -38,6 +39,9 @@ InputReader::InputReader(int day, bool useExample) {
     downloadInput(url);
   }
 }
+
+InputReader::InputReader(int day, AocCmdLineArgs *args)
+    : InputReader(day, args->useExampleInput()) {}
 
 void InputReader::downloadInput(const std::string &url) {
   // input file doesn't exists yet - download it using curl
