@@ -9,6 +9,7 @@ class FileIteratorEnd {};
 class FileIterator {
 public:
   FileIterator(const std::string &filepath);
+  ~FileIterator() { _fs.close(); }
 
   const std::string &operator*() const { return _item; }
 

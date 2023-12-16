@@ -8,7 +8,6 @@ class AocCmdLineArgs;
 class InputReader {
 private:
   std::string _inputFilePath;
-  std::fstream _inputFS;
 
   void downloadInput(const std::string &url);
 
