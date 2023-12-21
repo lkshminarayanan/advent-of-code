@@ -9,5 +9,5 @@ AocCmdLineArgs::AocCmdLineArgs(int argc, char *argv[]) {
 }
 
 bool AocCmdLineArgs::useExampleInput() const {
-  return _argsContains("--useExample");
+  return hasBoolFlag("--useExample");
 }
