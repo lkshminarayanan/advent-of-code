@@ -19,4 +19,6 @@ public:
   // File iterators for the input
   auto begin() const { return FileIterator(_inputFilePath); }
   auto end() const { return FileIteratorEnd(); }
+
+  std::string readAll();
 };

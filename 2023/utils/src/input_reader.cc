@@ -95,3 +95,22 @@ void InputReader::downloadInput(const std::string &url) {
 
   std::cout << "Downloaded input file from " << url << std::endl;
 }
+
+std::string InputReader::readAll() {
+  constexpr auto readSize = std::size_t(4096);
+  auto stream = std::ifstream(_inputFilePath.data());
+  stream.exceptions(std::ios_base::badbit);
+
+  if (not stream) {
+    throw std::ios_base::failure("failed to open the input file at '" +
+                                 _inputFilePath + "'");
+  }
+
+  auto out = std::string();
+  auto buf = std::string(readSize, '\0');
+  while (stream.read(&buf[0], readSize)) {
+    out.append(buf, 0, stream.gcount());
+  }
+  out.append(buf, 0, stream.gcount());
+  return out;
+}
