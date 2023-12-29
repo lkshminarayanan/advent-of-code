@@ -12,6 +12,7 @@ public:
   ~FileIterator() { _fs.close(); }
 
   const std::string &operator*() const { return _item; }
+  const std::string *operator->() const { return &_item; }
 
   FileIterator &operator++();
 
