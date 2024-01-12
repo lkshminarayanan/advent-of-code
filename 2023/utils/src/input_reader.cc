@@ -114,3 +114,12 @@ std::string InputReader::readAll() {
   out.append(buf, 0, stream.gcount());
   return out;
 }
+
+std::vector<std::string> InputReader::readAllAsVectorOfStrings() {
+  std::vector<std::string> input;
+  for (auto it = begin(); it != end(); ++it) {
+    input.push_back(*it);
+  }
+
+  return std::move(input);
+}

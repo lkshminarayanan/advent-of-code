@@ -2,6 +2,7 @@
 
 #include "file_iterator.hh"
 #include <fstream>
+#include <vector>
 
 class AocCmdLineArgs;
 
@@ -21,4 +22,5 @@ public:
   auto end() const { return FileIteratorEnd(); }
 
   std::string readAll();
+  std::vector<std::string> readAllAsVectorOfStrings();
 };
