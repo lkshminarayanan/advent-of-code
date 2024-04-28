@@ -15,6 +15,7 @@ public:
   const std::string *operator->() const { return &_item; }
 
   FileIterator &operator++();
+  FileIterator &operator++(int) { return operator++(); }
 
   bool operator!=(FileIteratorEnd) const { return _has_more; }
 
