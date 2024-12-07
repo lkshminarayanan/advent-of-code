@@ -35,6 +35,7 @@ macro(init_solutions year)
 endmacro()
 
 init_solutions(2023)
+init_solutions(2024)
 
 # Create symbolic link to compile_commands.json after CMake configuration
 execute_process(
