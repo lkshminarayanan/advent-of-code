@@ -10,12 +10,10 @@
 #include "command_line_args.hh"
 #include "config.hh"
 
-constexpr int DEFAULT_YEAR = 2023;
-
-InputReader::InputReader(int day, bool useExample) {
+InputReader::InputReader(int day, int year, bool useExample) {
 
   _inputFilePath =
-      std::format("{}/year{}_d{}", INPUT_LOCAL_CACHE, DEFAULT_YEAR, day);
+      std::format("{}/year{}_d{}", INPUT_LOCAL_CACHE, year, day);
   if (useExample) {
     // use the example file
     _inputFilePath += ".example";
@@ -35,13 +33,13 @@ InputReader::InputReader(int day, bool useExample) {
                                   "' not found");
     }
     std::string url = std::format("https://adventofcode.com/{}/day/{}/input",
-                                  DEFAULT_YEAR, day);
+                                  year, day);
     downloadInput(url);
   }
 }
 
-InputReader::InputReader(int day, AocCmdLineArgs *args)
-    : InputReader(day, args->useExampleInput()) {}
+InputReader::InputReader(int day, int year, AocCmdLineArgs *args)
+    : InputReader(day, year, args->useExampleInput()) {}
 
 void InputReader::downloadInput(const std::string &url) {
   // input file doesn't exists yet - download it using curl

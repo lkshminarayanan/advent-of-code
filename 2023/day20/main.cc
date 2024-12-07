@@ -5,6 +5,7 @@
 #include <numeric>
 #include <queue>
 #include <unordered_map>
+#include <algorithm>
 
 using AocType = unsigned long long;
 
