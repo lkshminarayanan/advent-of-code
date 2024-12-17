@@ -17,28 +17,26 @@ class Logger {
         case LogLevel::DEBUG:
             return "DEBUG";
         case LogLevel::INFO:
-            return "INFO";
+            return "INFO ";
         case LogLevel::WARN:
-            return "WARN";
+            return "WARN ";
         case LogLevel::ERROR:
             return "ERROR";
         }
     }
 
-    std::string _log_header;
-
     template <typename... Args>
     void log(const std::format_string<Args...>& fmt, LogLevel level, Args&&... args) {
         if (_log_level <= level) {
-            std::cout << _log_header << std::format(fmt, std::forward<Args>(args)...) << std::endl;
+            std::cout << std::format("{} [{}] : {}", log_level_to_string(level), _logger_name,
+                                     std::format(fmt, std::forward<Args>(args)...))
+                      << std::endl;
         }
     }
 
   public:
     Logger(const std::string& logger_name, LogLevel log_level = LogLevel::INFO)
-        : _logger_name(logger_name), _log_level(log_level) {
-        _log_header = std::format("{} [{}] : ", log_level_to_string(_log_level), _logger_name);
-    }
+        : _logger_name(logger_name), _log_level(log_level) {}
 
     template <typename... Args> void debug(const std::format_string<Args...>& fmt, Args&&... args) {
         log(fmt, LogLevel::DEBUG, std::forward<Args>(args)...);
