@@ -1,6 +1,8 @@
 #pragma once
 
 #include "file_iterator.hh"
+#include "string_helper.hh"
+#include <string>
 #include <vector>
 
 class AocCmdLineArgs;
@@ -26,4 +28,17 @@ public:
 
   std::string readAll();
   std::vector<std::string> readAllAsVectorOfStrings();
+
+  template <std::integral numeric_type>
+  std::vector<numeric_type> readAllAsVectorOfNumbers(const std::string separators = " ") {
+      std::vector<numeric_type> input;
+      for (auto it = begin(); it != end(); ++it) {
+          auto line = *it;
+          splitToCustomContainer(line, [&input](const std::string& token) {
+              input.push_back(std::stoll(token));
+          }, separators);
+      }
+
+      return std::move(input);
+  }
 };
